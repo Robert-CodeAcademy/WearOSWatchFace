@@ -2,7 +2,6 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
-import android.os.Bundle
 import androidx.wear.watchface.WatchFaceService
 import androidx.wear.watchface.WatchFaceService.Engine
 import kotlin.math.PI
@@ -21,9 +20,9 @@ class MainActivity : WatchFaceService() {
         return Engine()
     }
 
-    inner class Engine : Engine() {
+    inner class Engine : WatchFaceService.Engine() {
 
-        override fun onCreate(holder: SurfaceHolder) {
+        override fun onCreate(holder: androidx.wear.watchface.WatchFaceService.Engine.SurfaceHolder) {
             super.onCreate(holder)
 
             paint = Paint().apply {
