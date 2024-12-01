@@ -1,7 +1,6 @@
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.Rect
 import android.service.wallpaper.WallpaperService
 import android.view.SurfaceHolder
 import kotlin.math.PI
@@ -67,15 +66,15 @@ class MainActivity : WallpaperService() {
             canvas.drawCircle(centerX, centerY, radius, paint)
 
             // Draw hour hand
-            val hourAngle = PI / 6 * (System.currentTimeMillis() / 1000 / 3600 % 12).toFloat()
+            val hourAngle = PI / 6 * ((System.currentTimeMillis() / 1000L) / 3600 % 12).toFloat()
             canvas.drawLine(centerX, centerY, centerX + cos(hourAngle) * radius * 0.5f, centerY + sin(hourAngle) * radius * 0.5f, hourPaint)
 
             // Draw minute hand
-            val minuteAngle = PI / 30 * (System.currentTimeMillis() / 1000 / 60 % 60).toFloat()
+            val minuteAngle = PI / 30 * ((System.currentTimeMillis() / 1000L) / 60 % 60).toFloat()
             canvas.drawLine(centerX, centerY, centerX + cos(minuteAngle) * radius * 0.7f, centerY + sin(minuteAngle) * radius * 0.7f, minutePaint)
 
             // Draw second hand
-            val secondAngle = PI / 30 * (System.currentTimeMillis() / 1000 % 60).toFloat()
+            val secondAngle = PI / 30 * ((System.currentTimeMillis() / 1000L) % 60).toFloat()
             canvas.drawLine(centerX, centerY, centerX + cos(secondAngle) * radius * 0.9f, centerY + sin(secondAngle) * radius * 0.9f, secondPaint)
 
             // Draw center
