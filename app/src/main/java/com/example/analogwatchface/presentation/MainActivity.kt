@@ -2,13 +2,13 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
-import androidx.wear.watchface.WatchFaceService
-import androidx.wear.watchface.WatchFaceService.Engine
+import android.service.wallpaper.WallpaperService
+import android.view.SurfaceHolder
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
-class MainActivity : WatchFaceService() {
+class MainActivity : WallpaperService() {
 
     private lateinit var paint: Paint
     private lateinit var hourPaint: Paint
@@ -20,10 +20,10 @@ class MainActivity : WatchFaceService() {
         return Engine()
     }
 
-    inner class Engine : WatchFaceService.Engine() {
+    inner class Engine : WallpaperService.Engine() {
 
-        override fun onCreate(holder: androidx.wear.watchface.WatchFaceService.Engine.SurfaceHolder) {
-            super.onCreate(holder)
+        override fun onCreate(surfaceHolder: SurfaceHolder) {
+            super.onCreate(surfaceHolder)
 
             paint = Paint().apply {
                 color = Color.WHITE
@@ -56,12 +56,12 @@ class MainActivity : WatchFaceService() {
             }
         }
 
-        override fun onDraw(canvas: Canvas, bounds: Rect) {
-            super.onDraw(canvas, bounds)
+        override fun onDraw(holder: SurfaceHolder, canvas: Canvas, x: Int, y: Int, width: Int, height: Int) {
+            super.onDraw(holder, canvas, x, y, width, height)
 
-            val centerX = bounds.centerX().toFloat()
-            val centerY = bounds.centerY().toFloat()
-            val radius = bounds.width() / 2f
+            val centerX = width / 2f
+            val centerY = height / 2f
+            val radius = width / 2f
 
             // Draw circle
             canvas.drawCircle(centerX, centerY, radius, paint)
