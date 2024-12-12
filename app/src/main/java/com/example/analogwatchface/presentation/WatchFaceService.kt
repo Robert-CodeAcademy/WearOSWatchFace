@@ -3,9 +3,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.service.wallpaper.WallpaperService
 import android.view.SurfaceHolder
-import kotlin.math.PI
-import kotlin.math.cos
-import kotlin.math.sin
 
 class WatchFaceService : WallpaperService() {
 
@@ -73,26 +70,6 @@ class WatchFaceService : WallpaperService() {
 
         override fun onOffsetsChanged(xOffset: Float, yOffset: Float, xOffsetStep: Float, yOffsetStep: Float, xPixelOffset: Int, yPixelOffset: Int) {
             super.onOffsetsChanged(xOffset, yOffset, xOffsetStep, yOffsetStep, xPixelOffset, yPixelOffset)
-        }
-
-        override fun onTouchEvent(event: MotionEvent): Boolean {
-            return super.onTouchEvent(event)
-        }
-
-        override fun onCommand(action: String, x: Int, y: Int, z: Int, extras: Bundle, resultRequestCode: Int): Bundle? {
-            return super.onCommand(action, x, y, z, extras, resultRequestCode)
-        }
-
-        override fun onAttachedToWindow() {
-            super.onAttachedToWindow()
-        }
-
-        override fun onDetachedFromWindow() {
-            super.onDetachedFromWindow()
-        }
-
-        override fun onApplyWindowInsets(insets: WindowInsetsCompat): WindowInsetsCompat {
-            return super.onApplyWindowInsets(insets)
         }
     }
 }
