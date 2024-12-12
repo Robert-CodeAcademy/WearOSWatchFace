@@ -1,4 +1,6 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 
 android {
     compileSdkVersion 29
@@ -19,7 +21,7 @@ android {
 }
 
 dependencies {
-    implementation ("androidx.constraintlayout:constraintlayout:1.1.3")
-    implementation ("androidx.wear:wear:1.0.0")
-    implementation ("androidx.wear:wear-watchface:1.0.0")
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.wear:wear:1.0.0'
+    implementation 'androidx.wear:wear-watchface:1.0.0'
 }

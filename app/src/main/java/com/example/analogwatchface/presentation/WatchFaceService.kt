@@ -55,33 +55,44 @@ class WatchFaceService : WallpaperService() {
             }
         }
 
-        override fun onDraw(holder: SurfaceHolder, canvas: Canvas, x: Int, y: Int, width: Int, height: Int) {
-            super.onDraw(holder, canvas, x, y, width, height)
+        override fun onSurfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
+            super.onSurfaceChanged(holder, format, width, height)
+        }
 
-            val centerX = width / 2f
-            val centerY = height / 2f
-            val radius = width / 2f
+        override fun onSurfaceCreated(holder: SurfaceHolder) {
+            super.onSurfaceCreated(holder)
+        }
 
-            // Draw circle
-            canvas.drawCircle(centerX, centerY, radius, paint)
+        override fun onSurfaceDestroyed(holder: SurfaceHolder) {
+            super.onSurfaceDestroyed(holder)
+        }
 
-            // Draw hour hand
-            val hourAngle = (PI / 6 * ((System.currentTimeMillis() / 1000L) / 3600 % 12)).toFloat()
-            canvas.drawLine(centerX, centerY, centerX + cos(hourAngle) * radius * 0.5f, centerY + sin(hourAngle) * radius * 0.5f, hourPaint)
+        override fun onVisibilityChanged(changed: Boolean) {
+            super.onVisibilityChanged(changed)
+        }
 
-            // Draw minute hand
-            val minuteAngle = (PI / 30 * ((System.currentTimeMillis() / 1000L) / 60 % 60)).toFloat()
-            canvas.drawLine(centerX, centerY, centerX + cos(minuteAngle) * radius * 0.7f, centerY + sin(minuteAngle) * radius * 0.7f, minutePaint)
+        override fun onOffsetsChanged(xOffset: Float, yOffset: Float, xOffsetStep: Float, yOffsetStep: Float, xPixelOffset: Int, yPixelOffset: Int) {
+            super.onOffsetsChanged(xOffset, yOffset, xOffsetStep, yOffsetStep, xPixelOffset, yPixelOffset)
+        }
 
-            // Draw second hand
-            val secondAngle = (PI / 30 * ((System.currentTimeMillis() / 1000L) % 60)).toFloat()
-            canvas.drawLine(centerX, centerY, centerX + cos(secondAngle) * radius * 0.9f, centerY + sin(secondAngle) * radius * 0.9f, secondPaint)
+        override fun onTouchEvent(event: MotionEvent): Boolean {
+            return super.onTouchEvent(event)
+        }
 
-            // Draw center
-            canvas.drawCircle(centerX, centerY, 5f, centerPaint)
+        override fun onCommand(action: String, x: Int, y: Int, z: Int, extras: Bundle, resultRequestCode: Int): Bundle? {
+            return super.onCommand(action, x, y, z, extras, resultRequestCode)
+        }
 
-            // Update the watch face every second
-            postInvalidateDelayed(1000)
+        override fun onAttachedToWindow() {
+            super.onAttachedToWindow()
+        }
+
+        override fun onDetachedFromWindow() {
+            super.onDetachedFromWindow()
+        }
+
+        override fun onApplyWindowInsets(insets: WindowInsetsCompat): WindowInsetsCompat {
+            return super.onApplyWindowInsets(insets)
         }
     }
 }
