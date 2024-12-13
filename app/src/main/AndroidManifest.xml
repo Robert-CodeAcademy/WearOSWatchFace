@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.analogwatchface">
 
-    <uses-permission android:name="android.permission.BIND_WALLPAPER" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,14 +10,16 @@
         android:theme="@style/AppTheme">
 
         <service
-            android:name=".WatchFaceService"
+            android:name="com.example.analogwatchface.WatchFaceService"
             android:enabled="true"
             android:exported="true"
-            android:label="@string/app_name"
-            android:permission="android.permission.BIND_WALLPAPER">
+            android:label="@string/app_name">
             <meta-data
                 android:name="android.service.wallpaper"
                 android:resource="@xml/watch_face" />
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
         </service>
 
     </application>

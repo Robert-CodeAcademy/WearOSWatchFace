@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+    namespace = "com.example.analogwatchface"
     compileSdk = 34
     defaultConfig {
         applicationId = "com.example.analogwatchface"
