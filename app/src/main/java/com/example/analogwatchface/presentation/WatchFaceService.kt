@@ -71,5 +71,35 @@ class WatchFaceService : WallpaperService() {
         override fun onOffsetsChanged(xOffset: Float, yOffset: Float, xOffsetStep: Float, yOffsetStep: Float, xPixelOffset: Int, yPixelOffset: Int) {
             super.onOffsetsChanged(xOffset, yOffset, xOffsetStep, yOffsetStep, xPixelOffset, yPixelOffset)
         }
+
+        override fun onDraw(holder: SurfaceHolder) {
+            val canvas = holder.lockCanvas()
+            canvas.drawColor(Color.BLACK)
+
+            // Draw the watch face
+            val centerX = canvas.width / 2f
+            val centerY = canvas.height / 2f
+            val radius = Math.min(centerX, centerY) - 50f
+
+            // Draw the circle
+            canvas.drawCircle(centerX, centerY, radius, paint)
+
+            // Draw the hour hand
+            val hourAngle = System.currentTimeMillis() % 43200000 / 432000f * 30f
+            canvas.drawLine(centerX, centerY, centerX + radius * 0.5f * Math.sin(hourAngle * Math.PI / 180f), centerY - radius * 0.5f * Math.cos(hourAngle * Math.PI / 180f), hourPaint)
+
+            // Draw the minute hand
+            val minuteAngle = System.currentTimeMillis() % 3600000 / 60000f * 6f
+            canvas.drawLine(centerX, centerY, centerX + radius * 0.8f * Math.sin(minuteAngle * Math.PI / 180f), centerY - radius * 0.8f * Math.cos(minuteAngle * Math.PI / 180f), minutePaint)
+
+            // Draw the second hand
+            val secondAngle = System.currentTimeMillis() % 60000 / 1000f * 6f
+            canvas.drawLine(centerX, centerY, centerX + radius * 0.9f * Math.sin(secondAngle * Math.PI / 180f), centerY - radius * 0.9f * Math.cos(secondAngle * Math.PI / 180f), secondPaint)
+
+            // Draw the center dot
+            canvas.drawCircle(centerX, centerY, 10f, centerPaint)
+
+            holder.unlockCanvasAndPost(canvas)
+        }
     }
 }
